@@ -1,0 +1,30 @@
+{
+  "name": "moons",
+  "seed": 3,
+  "dataset": {
+    "name": "moons",
+    "options": {
+      "samples": 1000,
+      "noise": 0.2
+    }
+  },
+  "architecture": [
+    {"type": "dense", "units": 32, "activation": "leaky_relu", "initializer": "he_uniform"},
+    {"type": "batchnorm"},
+    {"type": "dense", "units": 32, "activation": "leaky_relu", "initializer": "he_uniform"},
+    {"type": "dense", "units": 2, "activation": "softmax", "initializer": "xavier_uniform"}
+  ],
+  "loss": "categorical_crossentropy",
+  "l2": 0.0,
+  "optimizer": {"name": "rmsprop", "learning_rate": 0.003},
+  "schedule": {"name": "constant"},
+  "training": {
+    "epochs": 120,
+    "batch_size": 32,
+    "shuffle": true,
+    "patience": 25,
+    "min_delta": 0.000001,
+    "restore_best": true,
+    "verbose": true
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "spirals",
+  "seed": 11,
+  "dataset": {
+    "name": "spirals",
+    "options": {
+      "samples_per_class": 300,
+      "classes": 3,
+      "noise": 0.15
+    }
+  },
+  "architecture": [
+    {"type": "dense", "units": 64, "activation": "relu", "initializer": "he_normal"},
+    {"type": "dense", "units": 64, "activation": "relu", "initializer": "he_normal"},
+    {"type": "dropout", "rate": 0.1},
+    {"type": "dense", "units": 3, "activation": "softmax", "initializer": "xavier_normal"}
+  ],
+  "loss": "categorical_crossentropy",
+  "l2": 0.0005,
+  "optimizer": {"name": "adam", "learning_rate": 0.005, "clip_norm": 5.0},
+  "schedule": {"name": "exponential", "decay_rate": 0.99},
+  "training": {
+    "epochs": 300,
+    "batch_size": 64,
+    "shuffle": true,
+    "patience": 50,
+    "min_delta": 0.000001,
+    "restore_best": true,
+    "verbose": true
+  }
+}

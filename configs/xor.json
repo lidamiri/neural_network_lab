@@ -1,0 +1,30 @@
+{
+  "name": "xor",
+  "seed": 7,
+  "dataset": {
+    "name": "xor",
+    "options": {
+      "samples": 800,
+      "noise": 0.05,
+      "target": "binary"
+    }
+  },
+  "architecture": [
+    {"type": "dense", "units": 8, "activation": "tanh", "initializer": "xavier_uniform"},
+    {"type": "dense", "units": 8, "activation": "tanh", "initializer": "xavier_uniform"},
+    {"type": "dense", "units": 1, "activation": "sigmoid", "initializer": "xavier_uniform"}
+  ],
+  "loss": "binary_crossentropy",
+  "l2": 0.0,
+  "optimizer": {"name": "adam", "learning_rate": 0.05},
+  "schedule": {"name": "step", "drop": 0.5, "every": 80},
+  "training": {
+    "epochs": 240,
+    "batch_size": 32,
+    "shuffle": true,
+    "patience": 40,
+    "min_delta": 0.000001,
+    "restore_best": true,
+    "verbose": true
+  }
+}

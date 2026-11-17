@@ -1,0 +1,29 @@
+{
+  "name": "regression",
+  "seed": 5,
+  "dataset": {
+    "name": "regression",
+    "options": {
+      "samples": 1200,
+      "noise": 0.05
+    }
+  },
+  "architecture": [
+    {"type": "dense", "units": 64, "activation": "tanh", "initializer": "xavier_uniform"},
+    {"type": "dense", "units": 64, "activation": "tanh", "initializer": "xavier_uniform"},
+    {"type": "dense", "units": 1, "activation": "linear", "initializer": "xavier_uniform"}
+  ],
+  "loss": {"name": "huber", "delta": 1.0},
+  "l2": 0.00001,
+  "optimizer": {"name": "adam", "learning_rate": 0.01},
+  "schedule": {"name": "cosine", "min_lr": 0.0005},
+  "training": {
+    "epochs": 150,
+    "batch_size": 64,
+    "shuffle": true,
+    "patience": 30,
+    "min_delta": 0.000001,
+    "restore_best": true,
+    "verbose": true
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "sine_surface",
+  "seed": 19,
+  "dataset": {
+    "name": "sine_surface",
+    "options": {
+      "samples": 2000,
+      "noise": 0.03
+    }
+  },
+  "architecture": [
+    {"type": "dense", "units": 128, "activation": "elu", "initializer": "lecun_normal"},
+    {"type": "dense", "units": 64, "activation": "elu", "initializer": "lecun_normal"},
+    {"type": "dense", "units": 1, "activation": "linear", "initializer": "lecun_normal"}
+  ],
+  "loss": "mse",
+  "l2": 0.0,
+  "optimizer": {"name": "sgd", "learning_rate": 0.01, "momentum": 0.9, "nesterov": true, "clip_norm": 2.0},
+  "schedule": {"name": "step", "drop": 0.5, "every": 40},
+  "training": {
+    "epochs": 160,
+    "batch_size": 32,
+    "shuffle": true,
+    "patience": 35,
+    "min_delta": 0.000001,
+    "restore_best": true,
+    "verbose": true
+  }
+}
