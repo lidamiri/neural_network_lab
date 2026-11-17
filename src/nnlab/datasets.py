@@ -22,6 +22,7 @@ class Dataset:
     labels_train: np.ndarray
     labels_val: np.ndarray
     labels_test: np.ndarray
+    target_scaler: object = None
 
     @property
     def input_dim(self):
@@ -136,6 +137,7 @@ def _build_split_dataset(name, x, labels, num_classes, target, options, rng):
         stratify=stratify,
     )
     (x_train, y_raw_train), (x_val, y_raw_val), (x_test, y_raw_test) = splits
+    target_scaler = None
     if options.get("standardize", target == "regression"):
         scaler = Standardizer().fit(x_train)
         x_train, x_val, x_test = scaler.transform(x_train), scaler.transform(x_val), scaler.transform(x_test)
@@ -168,6 +170,7 @@ def _build_split_dataset(name, x, labels, num_classes, target, options, rng):
         labels_train=labels_train,
         labels_val=labels_val,
         labels_test=labels_test,
+        target_scaler=target_scaler,
     )
 
 
