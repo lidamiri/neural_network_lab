@@ -26,15 +26,17 @@ help:
 	@echo   clean      remove build, cache and run artifacts
 	@echo   distclean  clean and remove the virtual environment
 
-venv:
+$(VENV_PY):
 	$(PYTHON) -m venv .venv
 	$(VENV_PY) -m pip install --upgrade pip
 
-install: venv
+venv: $(VENV_PY)
+
+install: $(VENV_PY)
 	$(VENV_PY) -m pip install -r requirements.txt
 	$(VENV_PY) -m pip install -e .
 
-dev: venv
+dev: $(VENV_PY)
 	$(VENV_PY) -m pip install -r requirements-dev.txt
 	$(VENV_PY) -m pip install -e .
 
